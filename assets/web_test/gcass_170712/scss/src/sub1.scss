@@ -1,0 +1,111 @@
+// sub1.scss
+/* sub1.css */
+
+@import "../base/variable";
+@import "../base/mixin";
+@import "./layout/header";
+@import "./layout/footer";
+
+// body{}
+#wrap{width: 980px; height: auto; min-height:700px; margin: 0 auto;
+	background-image: url($url + "sub/bg01_patt.jpg");
+			background-repeat:repeat; background-position: 0 0;}
+#wrap:after{content:" "; display: block; clear: both;}
+
+	#sideBox{width: 100%; height: 30px;float: left;
+			 background-color:map-get($color, gray);}// #sideBox
+	#sideBox>h2{@extend %hidden;}
+	#sideBox>ul{width:auto; height: 100%; float: right;}
+	#sideBox>ul>li{width: 90px; height: 30px; float: left;}
+	#sideBox>ul>li:last-child{width:250px;}
+
+	#sideBox>ul>li>a{
+		$url:"../../img/sub/";
+		$nav:"top_nav.jpg";
+		// 지역변수: 변수의 값을 사용할 수 있는 범위(scope)
+		@include link($u:$url,$f:$nav, $f2:$nav, $r:no-repeat);
+			transition:all 0.3s ease;}
+
+	$sideLi:(-460px, -550px, -640px, right);
+	@for $i from 1 through length($sideLi){
+		// #sideBox>ul>li:last-child(#{$i})>a:hover{background-position:nth($sideLi, $i);}	
+		// #sideBox>ul>li:last-child(#{$i})>a{background-position:nth($sideLiHover, $i);}	
+		#sideBox>ul>li:nth-child(#{$i})>a{background-position:nth($sideLi, $i) 0;}	
+		#sideBox>ul>li:nth-child(#{$i})>a:hover{
+							background-position:nth($sideLi, $i) bottom;}	
+	}// @for
+
+
+
+	#headBox{background-color:rgba(map-get($color,gray),0.3);}
+//	#444 -> rgba(#444,0.3)  -> rgba(70,70,70,0.3)
+
+	#contentBox{width:730px; height: auto; min-height: 710px;float: left;
+			background-color:transparent;
+			padding:64px 40px 0 64px; box-sizing:border-box;}
+		#contentBox>hgroup{width: 100%; height: 44px; margin-bottom: 48px;
+											color:map-get($color, white);
+			h2, h3{height:100%; float:right; color:inherit; line-height:44px;
+					font-weight:normal;}
+			h2{font-size:2rem; /* 1rem == 16px */ margin-left: 23px;}
+			h3{font-size:(18 / 16)+rem; }
+			}// hgroup
+
+		// #contentBox>hgroup>h2{height:100%; float:right; color:inherit; 
+		// 				line-height:44px; font-size:2rem; /* 1rem == 16px */ margin-left: 23px;}
+		// #contentBox>hgroup>h3{@extend #contentBox>hgroup>h2; font-size:(18 / 16)+rem;}
+
+		.curriculum{width: 100%; height:540px; margin-bottom: 50px;
+					background-color: #777;
+				>h4{@extend %hidden;}
+				>dl{width: 200px; height: 100%; margin-right: 10px;float: left;
+					&:last-of-type{margin-right: 0;}
+				}// dl
+				>dl>dt{width: 100%; height:340px; background-color: #fff;
+							border-radius:20px; margin-bottom:5px;
+							// border-radius:위왼 외오른 아래오른 아래왼; 
+							// border-top-left-radius:20%(200px -> 40px) 20%(340px -> 78px);
+							// border-top-left-radius:20px 20px;
+		
+							// border-top-left-radius:20px;
+							// border-top-right-radius:20px;
+							// border-bottom-left-radius:20px;
+							// border-bottom-right-radius:20px;
+							}
+				>dl>dt>span{width:340px; display: block; font-size:3em;
+										transform:rotate(-90deg) translate(-100px, -20px);
+										color:map-get($color, point);
+									//  transform은 block형태일때 사용가능
+									//	transform:rotate(); 	  // 회전(45deg)   z축을 기준, 단위:deg
+									//	transform:scale();			// 크기(2)				1 = 100%
+									//	transform:translate();	// 위치이동(100px)			본래의 위치를 기점으로 이동
+									//	transform:skew();				// 기울임(30deg)
+									}
+
+
+				>dl>dd{width:100%; box-sizing:border-box;
+							 height:auto; min-height:150px;
+							 border:1px solid map-get($color, white); 
+							 border-top:0; border-bottom:0;}
+				}// .curriculm
+		.curriculm>h4{}
+
+
+
+
+		.curri_narr{width: 100%; height:315px;
+					background-color: #add;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
